@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.lt.core.dao.UploadDao" >
+    
+    <insert id="insertUpload"  parameterType="Upload" >
+	    insert into upload(
+	                     uploadimgurl,
+	                     uploadby,
+	                     uploaddt
+	             )
+	             values(
+	                    #{uploadimgurl},
+	                    #{uploadby},
+	                    #{uploaddt}
+	            )
+	</insert>
+	
+	<select id="selectUpload" resultType="Upload">
+	    select *
+	    from upload 
+	    where uploadby = #{uploadby}
+    </select>
+    
+</mapper>

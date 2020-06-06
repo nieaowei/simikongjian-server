@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.lt.core.dao.HappyNoteDao" >
+    
+    <insert id="happyNoteWrite"  parameterType="HappyNote" >
+	    insert into happynote(
+	                     noteuser,
+	                     notetitle,
+	                     note,
+	                     writetime,
+	                     address,
+	                     weather
+	               
+	             )
+	             values(
+	                    #{noteuser},
+	                    #{notetitle},
+	                    #{note},
+	                    #{writetime},
+	                    #{address},
+	                    #{weather}
+	            )
+	</insert>
+	
+	<select id="happyNoteSelect" resultType="HappyNote">
+	    select *
+	    from happynote 
+	    where noteuser = #{noteuser}
+    </select>
+    
+</mapper>

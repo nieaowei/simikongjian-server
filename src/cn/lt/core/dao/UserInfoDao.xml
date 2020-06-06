@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.lt.core.dao.UserInfoDao" >
+
+    <!-- 添加信息 -->
+    <insert id="insertInfo" parameterType="UserInfo" >
+	    insert into userinfo(
+	                     username,
+	                     userheight,
+	                     userweight,
+	                     userfavorite,
+	                     updatedt
+	             )
+	             values(#{username},
+	                    #{userheight},
+	                    #{userweight},
+	                    #{userfavorite},
+	                    #{updatedt}
+	            )
+	</insert>
+    <select id="selectInfoByName"  resultType="UserInfo">
+	    select *
+	    from userinfo
+	    where username=#{username}
+    </select>
+    <select id="selectInfoByNameOderByAtDESC"  resultType="UserInfo">
+	    select * from userinfo where username=#{username} order by updatedt desc
+    </select>
+    
+    
+    <update id="updateInfo" parameterType="UserInfo">  
+        update UserInfo set 
+        username=#{username},
+        userheight=#{userheight},
+        userweight=#{userweight},
+        userfavorite=#{userfavorite},
+        updatedt=#{updatedt} 
+        where username=#{username}  
+    </update> 
+    
+</mapper>

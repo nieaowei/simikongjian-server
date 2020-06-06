@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.lt.core.dao.FoodDao" >
+
+    <!-- 添加信息 -->
+    <insert id="addFood" parameterType="Test" >
+	    insert into food(
+	                     id,
+	                     name,
+	                     price,
+	                     msg,
+	                     date
+	             )
+	             values(#{id},
+	                    #{name},
+	                    #{price},
+	                    #{msg},
+	                    #{date}
+	            )
+	</insert>
+     <select id="findAllFood"  resultType="Test">
+	    select *
+	    from food
+    </select>
+    <delete id="delFood" parameterType="Integer">
+    	delete from food where 
+    		id=#{id}
+    </delete>
+    
+    <update id="updateFood" parameterType="Test">  
+        update food set 
+        name=#{name},
+        price=#{price},
+        msg=#{msg},
+        date=#{date} 
+        where id=#{id}  
+    </update> 
+    
+    <select id="findFoodById" parameterType="Integer" resultType="Test" >
+    select *
+	    from food
+	    where id=#{id}
+    </select>
+    
+    <select id="findFoodByName" parameterType="String" resultType="Test" >
+    select *
+	    FROM food
+	    WHERE 
+	    
+		    <if test="name != '' " >
+		   		name LIKE CONCAT('%', #{name, jdbcType=VARCHAR}, '%')
+		    </if>
+		    <if test="name == '' " >
+		    	1=0
+		    </if>
+	  
+	    
+    </select>
+    
+    
+</mapper>

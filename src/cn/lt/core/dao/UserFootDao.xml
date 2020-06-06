@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.lt.core.dao.UserFootDao" >
+
+    <!-- 添加信息 -->
+    <insert id="insertUserFoot" parameterType="UserFoot" >
+	    insert into userfoot(
+	                     username,
+	                     userfoot,
+	                     dt
+	             )
+	             values(#{username},
+	                    #{userfoot},
+	                    #{dt}
+	            )
+	</insert>
+	
+	<select id="selectUserFootByName"  resultType="UserFoot">
+	    select *
+	    from userfoot
+	    where username=#{username}
+    </select>
+    
+</mapper>

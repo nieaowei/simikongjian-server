@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.lt.core.dao.UserShareDao" >
+
+    <!-- 添加信息 -->
+    <insert id="addShares" parameterType="UserShare" >
+	    insert into usershare(
+	                     username,
+	                     shares,
+	                     sharesurl,
+	                     sharesdt
+	             )
+	             values(#{username},
+	                    #{shares},
+	                    #{sharesurl},
+	                    #{sharesdt}
+	            )
+	</insert>
+	
+	<select id="selectSharesByName" parameterType="UserShare" resultType="UserShare">
+	    select *
+	    from usershare
+	    where username=#{username}
+    </select>
+    
+    <!-- <delete id="delUserFriendByName" parameterType="UserFriend">
+    	delete from userfriend 
+    	where 
+    		username=#{username}
+    	and
+    		friendname=#{friendname}
+    </delete> --> 
+    
+</mapper>

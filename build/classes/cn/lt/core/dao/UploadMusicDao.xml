@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.lt.core.dao.UploadMusicDao" >
+    
+    <insert id="insertUploadMusic"  parameterType="UploadMusic" >
+	    insert into uploadmusic(
+	                     uploadmusicurl,
+	                     uploadby,
+	                     uploaddt
+	             )
+	             values(
+	                    #{uploadmusicurl},
+	                    #{uploadby},
+	                    #{uploaddt}
+	            )
+	</insert>
+	
+	<select id="selectMusic" resultType="UploadMusic">
+	    select *
+	    from uploadmusic 
+	    where uploadby = #{uploadby}
+    </select>
+    
+</mapper>

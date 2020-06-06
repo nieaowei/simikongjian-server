@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.lt.core.dao.WeekDayDao" >
+
+    <!-- 注册 -->
+    <insert id="addWeekDay"  parameterType="WeekDay" >
+	    insert into weekday(
+	                     shenfen,
+	                     birthday,
+	                     createby
+	             )
+	             values(
+	                    #{shenfen},
+	                    #{birthday},
+	                    #{createby}
+	            )
+	</insert>
+	
+	<select id="selectWeekDay" resultType="WeekDay">
+	    select *
+	    from weekday 
+	    where createby = #{createby}
+    </select>
+    
+    
+    <select id="selectWeekDayToday" resultType="WeekDay">
+	    select *
+	    from weekday 
+	    where createby = #{createby} and birthday like #{birthday}
+    </select>
+</mapper>
