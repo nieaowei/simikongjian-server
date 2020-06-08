@@ -45,10 +45,10 @@ public class UploadMusicController {
 
 		InputStream is = request.getInputStream();
 		DataInputStream dis = new DataInputStream(is);
-
+			String usernameString = request.getParameter("username");
 		String result = "";
 		try {
-			result = saveMusicFile(dis);
+			result = saveMusicFile(dis,usernameString);
 			System.out.println(result);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -100,12 +100,13 @@ public class UploadMusicController {
 				request.getInputStream()));
 		// System.out.println(streamIn);
 		JSONObject object = JSONObject.fromObject(streamIn);
-
+		
 		String musiclUrl = object.getString("musiclUrl");
+		String usenrString = object.getString("username");
 		//musiclUrl.substring(musiclUrl.length()-7,6);
 
 		List<String> imageList = new ArrayList<String>();
-		imageList = PictureUtils.readMicToBytes(musiclUrl);
+		imageList = PictureUtils.readMicToBytes(musiclUrl,usenrString);
 		return imageList;
 	}
 
@@ -115,7 +116,7 @@ public class UploadMusicController {
 	 * @param dis
 	 * @return
 	 */
-	private String saveMusicFile(DataInputStream dis) {
+	private String saveMusicFile(DataInputStream dis,String username) {
 		System.out.println(dis);
 		String picname = "2020";
 		try {
@@ -124,13 +125,13 @@ public class UploadMusicController {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		String url = "D:/mywork/music/" + "user";
+		String url = "/tmp/music/" + username;
 		File file2 = new File(url);
 		if (!file2.exists()) {
 			file2.mkdirs();
 		}
 
-		String fileurl = "D:/mywork/music/" + "user" + "/" + picname + ".mp3";
+		String fileurl = "/tmp/music/" + username + "/" + picname + ".mp3";
 
 		File file = new File(fileurl);
 		if (!file.exists()) {
@@ -141,7 +142,7 @@ public class UploadMusicController {
 			}
 		}
 
-		String uploadby = "user";
+		String uploadby = username;
 		String uploaddt = "";
 		try {
 			uploaddt = MyUtils.getDate();

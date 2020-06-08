@@ -137,10 +137,10 @@ public class UploadController {
 
 		InputStream is = request.getInputStream();
 		DataInputStream dis = new DataInputStream(is);
-
+		String usernameString = request.getParameter("username");
 		String result = "";
 		try {
-			result = MyUtils.saveHeadFile(dis);
+			result = MyUtils.saveHeadFile(dis,usernameString);
 		} catch (Exception e) {
 			e.printStackTrace();
 			result = "uploaderror";

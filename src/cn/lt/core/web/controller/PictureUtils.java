@@ -43,7 +43,7 @@ public class PictureUtils {
 			aaa="cool";
 		}
 		// 图片转化为二进制
-		File file = new File("D:/mywork/picturecloth/user/"+aaa);
+		File file = new File("/tmp/picturecloth/user/"+aaa);
 		File[] files = file.listFiles();
 
 		List<String> aaaList = new ArrayList<>();
@@ -93,27 +93,41 @@ public class PictureUtils {
 	}
 
 	// 音频转成字节流
-	public static List<String> readMicToBytes(String musiclUrl) {
+	public static List<String> readMicToBytes(String musiclUrl,String usernmaeString) {
 		// 图片转化为二进制
-		File file = new File("D:/mywork/music/user/");
-		File[] files = file.listFiles();
-		String url = musiclUrl.substring(musiclUrl.length()-6);
 		List<String> aaaList = new ArrayList<>();
-		for (File f : files) {
-			try {
-				if (f.getName().contains(url)) {
-					// 读取图片转换为流
-					FileInputStream fis = new FileInputStream(f);
-					byte[] data = MyUtils.inputStreamToBytes(fis);
-					String base64str = Base64.encodeBase64String(data);
-					String img = base64str;
-					aaaList.add(img);
-				}
-			} catch (Exception e) {
-				// logger.warn("读取上传异常",e);
-				continue;
-			}
+		try {
+			File file = new File(musiclUrl);
+			
+			FileInputStream fileInputStream = new FileInputStream(file);
+			byte[] data = MyUtils.inputStreamToBytes(fileInputStream);
+			String base64str = Base64.encodeBase64String(data);
+			String img = base64str;
+			aaaList.add(img);
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
+		
+		
+//		File file = new File("/tmp/music/"+musiclUrl+"/");
+//		File[] files = file.listFiles();
+//		String url = musiclUrl.split(".")[1];
+//		List<String> aaaList = new ArrayList<>();
+//		for (File f : files) {
+//			try {
+//				if (f.getName().contains(url)) {
+//					// 读取图片转换为流
+//					FileInputStream fis = new FileInputStream(f);
+//					byte[] data = MyUtils.inputStreamToBytes(fis);
+//					String base64str = Base64.encodeBase64String(data);
+//					String img = base64str;
+//					aaaList.add(img);
+//				}
+//			} catch (Exception e) {
+//				// logger.warn("读取上传异常",e);
+//				continue;
+//			}
+//		}
 		return aaaList;
 
 	}
@@ -121,7 +135,7 @@ public class PictureUtils {
 	// 查小说名和作者
 	public static List<TextUtils> selectTextUtils() {
 		// 图片转化为二进制
-		String path = "D:/mywork/story";
+		String path = "/tmp/story";
 		File file = new File(path);
 		File[] files = file.listFiles();
 		List<TextUtils> textUtilsList = new ArrayList<TextUtils>();
@@ -141,7 +155,7 @@ public class PictureUtils {
 	public static List<String> readTextToBytes(String textname) {
 		
 		List<String> aaaList = new ArrayList<>();
-		List<File> files = MyUtils.searchFiles(new File("D:/mywork/story"), textname);
+		List<File> files = MyUtils.searchFiles(new File("/tmp/story"), textname);
 		for (File file : files) {
 			try {
 				if (file.getName().contains(".txt")) {
@@ -164,7 +178,7 @@ public class PictureUtils {
 	// 查小说名和作者
 		public static List<TextUtils> selectStudyTextUtils() {
 			// 图片转化为二进制
-			String path = "D:/mywork/study";
+			String path = "/tmp/study";
 			File file = new File(path);
 			File[] files = file.listFiles();
 			List<TextUtils> textUtilsList = new ArrayList<TextUtils>();
@@ -184,7 +198,7 @@ public class PictureUtils {
 public static List<String> readStudyTextToBytes(String textname) {
 		
 		List<String> aaaList = new ArrayList<>();
-		List<File> files = MyUtils.searchFiles(new File("D:/mywork/study"), textname);
+		List<File> files = MyUtils.searchFiles(new File("/tmp/study"), textname);
 		for (File file : files) {
 			try {
 				if (file.getName().contains(".txt")) {

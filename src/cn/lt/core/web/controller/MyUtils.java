@@ -129,7 +129,7 @@ public class MyUtils {
      * @param dis
      * @return
      */
-    public static String saveHeadFile(DataInputStream dis) {
+    public static String saveHeadFile(DataInputStream dis,String username) {
     	/*System.out.println(dis);
     	String picname = "2020";
     	try {
@@ -138,13 +138,13 @@ public class MyUtils {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}*/
-    	String url = "D:/mywork/userhead/"+"user";
+    	String url = "/tmp/user/"+username;
     	File file2 = new File(url);
         if (!file2.exists()) {
             file2.mkdirs();
         }
     	
-        String fileurl = "D:/mywork/userhead/"+"user"+"/"+"myhead"+".jpg";
+        String fileurl =url+"/myhead.jpg";
         
         File file = new File(fileurl);
         if (!file.exists()) {

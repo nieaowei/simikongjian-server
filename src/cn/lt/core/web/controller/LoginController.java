@@ -80,12 +80,13 @@ public class LoginController {
 		
 		List<Login> Logins = new ArrayList<Login>();
 		Logins = loginService.login(username, oldpassword);
-		if (Logins != null && Logins.size() > 0) {
-			register = loginService.updatePass(username, password);
-			if(register) {
-				return "1";
-			}
+		if (Logins.size() == 0) {
+			return "3";
 		} 
+		register = loginService.updatePass(username, password);
+		if(register) {
+			return "1";
+		}
 		return "2";
 	}
 	@RequestMapping(value = "/validPass", method = RequestMethod.GET)

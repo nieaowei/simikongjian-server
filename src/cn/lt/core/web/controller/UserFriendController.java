@@ -174,12 +174,16 @@ public class UserFriendController {
 			List<UserShare> happyNotes = new ArrayList<UserShare>();
 			UserShare userShare = new UserShare();
 			happyNotes = userFriendService.selectSharesByName(userfriendsname);
-			for (int j = 0; j < happyNotes.size(); j++) {
-				userShare = happyNotes.get(j);
-				userShares.add(userShare);
-			}
+//			for (int j = 0; j < happyNotes.size(); j++) {
+//				userShare = happyNotes.get(j);
+//				userShares.add(userShare);
+//			}
+			userShares.addAll(happyNotes);
 			
 		}
+		List<UserShare> myoteList = userFriendService.selectSharesByName(username);
+		
+		userShares.addAll(myoteList);
 		
 		Collections.sort(userShares, new Comparator<UserShare>(){  
             public int compare(UserShare o1, UserShare o2) { 
