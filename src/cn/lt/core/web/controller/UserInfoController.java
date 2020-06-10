@@ -188,12 +188,18 @@ public class UserInfoController {
 		}
 		@RequestMapping(value = "/selectHistory", method = RequestMethod.GET)
 		@ResponseBody
-		public String selectHistory(String username) {
+		public void selectHistory(HttpServletRequest request,
+				HttpServletResponse response) throws IOException {
+			String username = request.getParameter("username");
 			// Food food=null;
+			response.setCharacterEncoding("UTF-8");//通知response以UTF-8发送  
+	        response.setContentType("text/html;charset=UTF-8");//设置浏览器以UTF-8打开
 			
 			List<UserInfo> userInfos = userInfoService.selectInfoByNameOderByAtDESC(username);
 			JSONObject js = new JSONObject();
 			js.put("data", userInfos);
-			return js.toString();
+			response.getWriter().write(js.toString());
+			response.getWriter().close();
+//			return username;
 		}
 }
